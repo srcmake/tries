@@ -1,5 +1,4 @@
 // Copyright srcmake.com 2020.
-#include <iostream>
 #include <unordered_map>
 
 ///////////////////////////////////////
@@ -43,8 +42,6 @@ struct Trie::Node
 ///////////////////////////////////////
 Trie::Trie()
 	{
-	//std::cout << "Constructor called for trie.\n";
-
 	// Create the root of the tree.
 	root = new Node();
 	}
@@ -54,7 +51,6 @@ Trie::Trie()
 ///////////////////////////////////////
 Trie::~Trie()
 	{
-	//std::cout << "Destructor called for trie.\n";
 	// TODO: Delete all nodes.
 	}
 ///////////////////////////////////////
@@ -62,8 +58,6 @@ Trie::~Trie()
 ///////////////////////////////////////
 void Trie::Insert(const std::string& word)
 	{
-	//std::cout << "Inserting word " << word << std::endl;
-
 	// Starting from the root, traverse/create nodes for each char in the string.
 	Node* curr = root;
 	for(int i = 0; i < word.length(); i++)
@@ -95,8 +89,6 @@ void Trie::Insert(const std::string& word)
 		// Update curr.
 		curr = node;
 		}
-
-	//std::cout << "Finished inserting word " << word << std::endl;
 	}
 ///////////////////////////////////////
 
