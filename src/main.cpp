@@ -21,6 +21,9 @@ int main()
 	assert(trie.Contains("bananas") == false);
 	assert(trie.Contains("banana") == true);
 	
-	cout << "Program ended.\n";
-	return 0;
+	assert(trie.PrefixExists("app") == true);
+	assert(trie.PrefixExists("banana") == true);
+	assert(trie.PrefixExists("bann") == false);
+
+	cout << "Program ended.\n";	return 0;
 	}
