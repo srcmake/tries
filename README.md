@@ -15,7 +15,7 @@ TODO
 
 ## Deployment
 
-The `makefile` will compile the project with C++11 (the version was chosen arbitrarily,
+The `Makefile` will compile the project with C++11 (the version was chosen arbitrarily,
 we're not really using any special language features). 
 
 On Linux/Mac, as long as you have GCC, the following command will compile and run the project.
