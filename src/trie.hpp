@@ -92,6 +92,7 @@ bool Trie::Contains(const std::string& word)
 	{
 	// Starting from the root, traverse/create nodes for each char in the string.
 	Node* currNode = root;
+
 	for(int i = 0; i < word.length(); i++)
 		{
 		char c = word[i];
@@ -99,26 +100,18 @@ bool Trie::Contains(const std::string& word)
 		// Check if this char has a node created for it yet.
 		std::unordered_map<char, Node*>::const_iterator it = currNode->nextNodesMap.find(c);
 		
-		// The node doesn't exist so this word wasn't inserted.
-		Node* nextNode;
-		if(it == currNode->nextNodesMap.end())
-			{
-			return false;
-			}
-		// The node does exist so make "node" point to it.
-		else
-			{
-			nextNode = currNode->nextNodesMap[c];
-			}
+		// Get the next node if it exists.
+		Node* nextNode = it == currNode->nextNodesMap.end() ? NULL : currNode->nextNodesMap[c];
+		
+		// If the next node doesn't exist...our Trie doesn't contain it. Return false.
+		if(nextNode == NULL) { return false; }
 	
 		// Update currNode for the next iteration.
 		currNode = nextNode;
 
 		// If this is the last character in the word, check if it's marked as the return of a word.
 		if(i == word.length() - 1)
-			{
-			return currNode->isEndOfWord;
-			}
+			{ return currNode->isEndOfWord; }
 		}
 	
 	return false;
