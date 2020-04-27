@@ -60,6 +60,7 @@ void Trie::Insert(const std::string& word)
 	{
 	// Starting from the root, traverse/create nodes for each char in the string.
 	Node* currNode = root;
+
 	for(int i = 0; i < word.length(); i++)
 		{
 		char c = word[i];
@@ -67,20 +68,13 @@ void Trie::Insert(const std::string& word)
 		// Check if this char has a node created for it yet.
 		std::unordered_map<char, Node*>::const_iterator it = currNode->nextNodesMap.find(c);
 		
-		// The node doesn't exist so create it.
-		Node* nextNode;
-		if(it == currNode->nextNodesMap.end())
-			{
-			nextNode = new Node(c);
-			currNode->nextNodesMap[c] = nextNode;
-			}
-		// The node does exist so make "node" point to it.
-		else
-			{
-			nextNode = currNode->nextNodesMap[c];
-			}
-	
-		// Update currNode.
+		// If the next node doesn't exist, create it. Otherwise just get the existing one.
+		Node* nextNode = it == currNode->nextNodesMap.end() ? new Node(c) : currNode->nextNodesMap[c];
+		
+		// In case the next node is newly created, make the current node update it's pointer to point to it.
+		currNode->nextNodesMap[c] = nextNode;
+
+		// Update currNode for the next iteration.
 		currNode = nextNode;
 
 		// If this is the last character in the word, mark the node as the end of the word.
@@ -117,7 +111,7 @@ bool Trie::Contains(const std::string& word)
 			nextNode = currNode->nextNodesMap[c];
 			}
 	
-		// Update currNode.
+		// Update currNode for the next iteration.
 		currNode = nextNode;
 
 		// If this is the last character in the word, check if it's marked as the return of a word.
@@ -156,7 +150,7 @@ bool Trie::PrefixExists(const std::string& prefix)
 			nextNode = currNode->nextNodesMap[c];
 			}
 	
-		// Update currNode.
+		// Update currNode for the next iteration.
 		currNode = nextNode;
 
 		// If this is the last character in the prefix, then this prefix did exist.
