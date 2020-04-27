@@ -80,14 +80,14 @@ void Trie::Insert(const std::string& word)
 			nextNode = currNode->nextNodesMap[c];
 			}
 	
+		// Update currNode.
+		currNode = nextNode;
+
 		// If this is the last character in the word, mark the node as the end of the word.
 		if(i == word.length() - 1)
 			{
-			nextNode->isEndOfWord = true;
+			currNode->isEndOfWord = true;
 			}
-
-		// Update currNode.
-		currNode = nextNode;
 		}
 	}
 ///////////////////////////////////////
@@ -117,14 +117,14 @@ bool Trie::Contains(const std::string& word)
 			nextNode = currNode->nextNodesMap[c];
 			}
 	
+		// Update currNode.
+		currNode = nextNode;
+
 		// If this is the last character in the word, check if it's marked as the return of a word.
 		if(i == word.length() - 1)
 			{
-			return nextNode->isEndOfWord;
+			return currNode->isEndOfWord;
 			}
-
-		// Update currNode.
-		currNode = nextNode;
 		}
 	
 	return false;
@@ -156,14 +156,14 @@ bool Trie::PrefixExists(const std::string& prefix)
 			nextNode = currNode->nextNodesMap[c];
 			}
 	
+		// Update currNode.
+		currNode = nextNode;
+
 		// If this is the last character in the prefix, then this prefix did exist.
 		if(i == prefix.length() - 1)
 			{
 			return true;
 			}
-
-		// Update currNode.
-		currNode = nextNode;
 		}
 	
 	return false;
