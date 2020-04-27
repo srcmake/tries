@@ -137,7 +137,7 @@ bool Trie::PrefixExists(const std::string& prefix)
 		// Check if this char has a node created for it yet.
 		std::unordered_map<char, Node*>::const_iterator it = currNode->nextNodesMap.find(c);
 		
-		// The node doesn't exist so this prefix wasn't inserted.
+		// Get the next node if it exists.
 		Node* nextNode = it == currNode->nextNodesMap.end() ? NULL : currNode->nextNodesMap[c];
 
 		// If the nextNode doesn't exist, then this prefix doesn't exist in our Trie.
@@ -148,9 +148,7 @@ bool Trie::PrefixExists(const std::string& prefix)
 
 		// If this is the last character in the prefix, then this prefix did exist.
 		if(i == prefix.length() - 1)
-			{
-			return true;
-			}
+			{ return true; }
 		}
 	
 	return false;
