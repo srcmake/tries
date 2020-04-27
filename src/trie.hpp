@@ -90,7 +90,7 @@ void Trie::Insert(const std::string& word)
 ///////////////////////////////////////
 bool Trie::Contains(const std::string& word)
 	{
-	// Starting from the root, traverse/create nodes for each char in the string.
+	// Starting from the root, traverse nodes for each char in the string.
 	Node* currNode = root;
 
 	for(int i = 0; i < word.length(); i++)
@@ -122,8 +122,9 @@ bool Trie::Contains(const std::string& word)
 ///////////////////////////////////////
 bool Trie::PrefixExists(const std::string& prefix)
 	{
-	// Starting from the root, traverse/create nodes for each char in the string.
+	// Starting from the root, traverse nodes for each char in the string.
 	Node* currNode = root;
+
 	for(int i = 0; i < prefix.length(); i++)
 		{
 		char c = prefix[i];
