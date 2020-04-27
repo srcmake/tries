@@ -133,16 +133,10 @@ bool Trie::PrefixExists(const std::string& prefix)
 		std::unordered_map<char, Node*>::const_iterator it = currNode->nextNodesMap.find(c);
 		
 		// The node doesn't exist so this prefix wasn't inserted.
-		Node* nextNode;
-		if(it == currNode->nextNodesMap.end())
-			{
-			return false;
-			}
-		// The node does exist so make "node" point to it.
-		else
-			{
-			nextNode = currNode->nextNodesMap[c];
-			}
+		Node* nextNode = it == currNode->nextNodesMap.end() ? NULL : currNode->nextNodesMap[c];
+
+		// If the nextNode doesn't exist, then this prefix doesn't exist in our Trie.
+		if(nextNode == NULL) { return false; }
 	
 		// Update currNode for the next iteration.
 		currNode = nextNode;
