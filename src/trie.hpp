@@ -52,10 +52,13 @@ Trie::Trie()
 Trie::~Trie()
 	{
 	// TODO: Delete all nodes.
+	// Very important because we're using the `new` keyword
+	// Which means there's a memory leak if don't clean them up.
 	}
 ///////////////////////////////////////
 
 ///////////////////////////////////////
+// Insert the word into the Trie.
 void Trie::Insert(const std::string& word)
 	{
 	// Starting from the root, traverse/create nodes for each char in the string.
@@ -88,6 +91,7 @@ void Trie::Insert(const std::string& word)
 
 
 ///////////////////////////////////////
+// Check if the Trie contains the word.
 bool Trie::Contains(const std::string& word)
 	{
 	// Starting from the root, traverse nodes for each char in the string.
@@ -120,6 +124,7 @@ bool Trie::Contains(const std::string& word)
 
 
 ///////////////////////////////////////
+// Check if there are words in the Trie that have the given prefix.
 bool Trie::PrefixExists(const std::string& prefix)
 	{
 	// Starting from the root, traverse nodes for each char in the string.
