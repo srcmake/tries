@@ -25,5 +25,6 @@ int main()
 	assert(trie.PrefixExists("banana") == true);
 	assert(trie.PrefixExists("bann") == false);
 
-	cout << "Program ended.\n";	return 0;
+	cout << "Program ended.\n";	
+	return 0;
 	}
